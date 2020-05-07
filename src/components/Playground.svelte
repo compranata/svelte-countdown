@@ -1,23 +1,17 @@
 <script>
-  import Button from '../shared/Button.svelte';
+  import Counter from './Counter.svelte';
+  import PlayersLoop from './PlayersLoop.svelte';
 
 </script>
 
+
 <div class="playground">
-  <div class="controller">
-    <Button type="secondary">Start</Button>
-    <Button type="primary">Pause</Button>
-  </div>
-  
+  <PlayersLoop />
+  <Counter on:bomb />
 </div>
 
 <style>
   .playground {
     width: 100%;
-  }
-  .controller {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 20px;
   }
 </style>
