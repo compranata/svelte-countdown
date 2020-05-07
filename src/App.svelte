@@ -1,30 +1,35 @@
 <script>
-	export let name;
+	import Header from './components/Header.svelte';
+	import Footer from './components/Footer.svelte';
+	import Members from './components/Members.svelte';
+	import Playground from './components/Playground.svelte';
+	import Tabs from './shared/Tabs.svelte';
+
+
+	export let title;
+	
+	// tabs
+	let items = ['Play', 'Members'];
+	let activeItem = 'Members';
+	const tabChange = (e) => activeItem = e.detail;
+
+
 </script>
 
-<main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
-</main>
+<Header>{title}</Header>
+	<main>
+		<Tabs {activeItem} {items} on:tabChange={tabChange} />
+		{#if activeItem === 'Play'}
+			<Playground />
+		{:else}
+			<Members />
+		{/if}
+	</main>
+<Footer></Footer>
 
 <style>
-	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
-	}
-
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
-	}
+  main {
+    max-width: 420px;
+		margin: 40px auto;
+  }
 </style>
