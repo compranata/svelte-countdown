@@ -3,9 +3,10 @@
   export let tiny = false;
   export let flat = false;
   export let inverse = false;
+  export let disabled = false;
 </script>
 
-<button class:flat={flat} class:inverse={inverse} class:tiny={tiny} class={type} on:click>
+<button class:disabled={disabled} class:flat={flat} class:inverse={inverse} class:tiny={tiny} class={type} on:click>
   <slot></slot>
 </button>
 
@@ -61,5 +62,8 @@
     background: #ddd;
     border: 2px solid #888;
   }
-
+  .disabled {
+    pointer-events: none;
+    background-color: #888;
+  }
 </style>

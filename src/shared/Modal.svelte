@@ -23,9 +23,12 @@
     padding: 10px;
     border-radius: 10px;
     max-width: 400px;
-    margin: 10% auto;;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
-    background: white;
+    background: black;
   }
   .promo .modal{
     background: crimson;

@@ -1,14 +1,14 @@
 <script>
   import { createEventDispatcher } from 'svelte';
-  import { Members } from '../stores/State';
+  import { Players, Config } from '../stores/State';
 
   let dispatch = createEventDispatcher();
   
   export let items;
   export let activeItem;
 
-  $: count = $Members.length;
-  $: disabled = count < 1;
+  $: isLive = $Config.live;
+  $: disabled = $Players < 1 || isLive;
 
   const handleClick = item => {
     if (disabled) return;
@@ -24,7 +24,7 @@
         <div class="wrapper" class:active={item === activeItem} class:disabled={disabled}>
           { item }
           {#if item === 'Members'}
-            <span class="badge">{count}</span>
+            <span class="badge">{$Players}</span>
           {/if}
         </div>
       </li>
@@ -42,7 +42,7 @@
     padding: 0;
     list-style-type: none;
   }
-  li{
+  li .wrapper{
     margin: 0 16px;
     font-size: 16px;
     color: #555;
@@ -55,6 +55,7 @@
   }
   .disabled {
     pointer-events: none;
+    cursor: not-allowed;
     opacity: .6;
   }
   .wrapper {

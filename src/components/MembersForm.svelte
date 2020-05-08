@@ -35,12 +35,12 @@
 
 </script>
 
-<form on:submit|preventDefault={submitHandler}>
+<form name="members" on:submit|preventDefault={submitHandler}>
   <div class="form-field">
     <input type="text" id="name" placeholder="add new member name" bind:value={fields.name}>
-    <div class="error">{errors.name}</div>
+    <Button type="secondary" flat="true">Add</Button>
   </div>
-  <Button type="secondary" flat="true">Add</Button>
+  <div class="error">{errors.name}</div>
 </form>
 
 <style>
@@ -50,19 +50,18 @@
     text-align: center;
   }
   .form-field {
-    margin: 18px auto;
+    display: flex;
+    margin: 18px auto 0;
   }
   input {
     width: 100%;
     border-radius: 6px;
-  }
-  label{
-    margin: 10px auto;
-    text-align: left;
+    margin-right: 18px;
   }
   .error{
     font-weight: bold;
     font-size: 12px;
     color: #d91b42;
+    margin-bottom: 18px;
   }
 </style>

@@ -1,39 +1,59 @@
 <script>
   import { Members } from '../stores/State';
+
+  export let currentPlayerId = 0;
+
+  $: posList = -(21 * currentPlayerId);
 </script>
 
 <div class="playersloop">
-  <ul>
-    {#each $Members as member (member.id)}
-      <li class:active={member.active}>{member.name}</li>
+  <ul class="looping" style="top: {posList}px">
+    {#each $Members as member, index (member.id)}
+      <li class:active={index === currentPlayerId}>{member.name}</li>
     {/each}
   </ul>
 </div>
 <style>
   .playersloop {
+    height: 7em;
     overflow: hidden;
+    position: relative;
   }
   ul{
-    /* display: flex;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center; */
+    align-items: center;
     padding: 0;
     list-style-type: none;
-
-    overflow-x: auto;
-    white-space: nowrap;
+    margin: 20px auto;
   }
   li{
+    position: relative;
     margin: 0 16px;
     font-size: 18px;
     color: #ccc;
-
-    display: inline-block;
-    width: 30%;
+    width: 300px;
+    text-align: center;
   }
   li.active {
-    font-size: 2em;
+    font-size: 36px;
     color: #666;
+    border: 2px solid #ccc;
+  }
+
+  li.active:before {
+    position: absolute;
+    content: '😱 ';
+    left: -18px;
+  }
+  li.active:after {
+    position: absolute;
+    content: '😱 ';
+    right: -18px;
   }
 
 </style>

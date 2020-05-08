@@ -4,14 +4,17 @@
 	import Modal from './shared/Modal.svelte';
 	import Members from './components/Members.svelte';
 	import Playground from './components/Playground.svelte';
+	import Settings from './components/Settings.svelte';
 	import Tabs from './shared/Tabs.svelte';
+	import { Config } from './stores/State.js';
 
-	export let title;
-	
 	// tabs
-	let items = ['Play', 'Members'];
+	let items = ['Play', 'Rules', 'Members'];
 	let activeItem = 'Play';
-	const tabChange = (e) => activeItem = e.detail;
+  $: isLive = $Config.live;
+	const tabChange = (e) => {
+		if (!isLive) activeItem = e.detail;
+	}
 
 	// modal
 	let showModal = false;
@@ -19,17 +22,18 @@
 	const toggleModal = () => {
 		showModal = !showModal;
 	}
-
 </script>
 
 <Modal {showModal} on:click={toggleModal}>
-	Boo
+	<iframe src="https://giphy.com/embed/cEYFeE1QgHWH2YADVHG" width="384" height="204" frameBorder="0" title="You suck!" class="giphy-embed" allowFullScreen></iframe>
 </Modal>
-<Header>{title}</Header>
+<Header></Header>
 	<main>
-		<Tabs {activeItem} {items} on:tabChange={tabChange} />
+		<Tabs {activeItem} {items} on:tabChange="{tabChange}" />
 		{#if activeItem === 'Play'}
 			<Playground on:bomb="{toggleModal}" />
+		{:else if activeItem === 'Rules'}
+			<Settings />
 		{:else}
 			<Members />
 		{/if}
