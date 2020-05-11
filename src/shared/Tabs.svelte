@@ -50,8 +50,8 @@
   }
   .active {
     color: #d91b42;
-    border-bottom: 2px solid #d91b42;
-    padding-bottom: 8px;
+    border-bottom: 4px solid #d91b42;
+    padding-bottom: 4px;
   }
   .disabled {
     pointer-events: none;
@@ -72,12 +72,13 @@
     text-align: center;
     background: #ddd;
     color: #888;
-    transform: translateY(-25%);
+    transform: translate(20%, -25%);
+    opacity: .5;
   }
   .active .badge {
     color: white;
     background: #d91b42;
-    opacity: .5;
+    opacity: 1;
   }
 
 </style>

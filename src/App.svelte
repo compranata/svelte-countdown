@@ -24,8 +24,8 @@
 	}
 </script>
 
-<Modal {showModal} on:click={toggleModal}>
-	<iframe src="https://giphy.com/embed/cEYFeE1QgHWH2YADVHG" width="384" height="204" frameBorder="0" title="You suck!" class="giphy-embed" allowFullScreen></iframe>
+<Modal {showModal} isDark={true} on:click={toggleModal}>
+	<iframe src="https://giphy.com/embed/cEYFeE1QgHWH2YADVHG" max-width="384" max-height="204" frameBorder="0" title="You suck!" class="giphy-embed" allowFullScreen></iframe>
 </Modal>
 <Header></Header>
 	<main>
@@ -44,6 +44,6 @@
   main {
 		position: relative;
     max-width: 420px;
-		margin: 40px auto;
+		margin: 20px auto;
   }
 </style>

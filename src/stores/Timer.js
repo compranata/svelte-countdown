@@ -11,11 +11,9 @@ export default class Timer {
     this.now = this.begin;
     const interval = setInterval(() => {
       this.now--
-      console.log(this.now);
       
       if (this.now < this.until) {
         clearInterval(interval);
-        console.log(this.now, 'boooo');
       }
     }, this.unit);
   }

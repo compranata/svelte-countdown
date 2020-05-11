@@ -10,7 +10,6 @@
     valid = true;
     const existingName = $Members.map(member => member.name.toLowerCase());
     const isExist = existingName.some(member => fields.name.trim().toLowerCase() === member);
-    console.log(isExist, existingName);
     
 
     if (fields.name.trim().length < 3) {

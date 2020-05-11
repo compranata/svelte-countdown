@@ -1,4 +1,6 @@
 <script>
+  import { fade, slide, scale } from 'svelte/transition';
+  import { flip } from 'svelte/animate';
   import { Members } from '../stores/State';
 
   export let currentPlayerId = 0;
@@ -9,7 +11,7 @@
 <div class="playersloop">
   <ul class="looping" style="top: {posList}px">
     {#each $Members as member, index (member.id)}
-      <li class:active={index === currentPlayerId}>{member.name}</li>
+      <li animate:flip class:active={index === currentPlayerId}>{member.name}</li>
     {/each}
   </ul>
 </div>
@@ -19,7 +21,18 @@
     overflow: hidden;
     position: relative;
   }
-  ul{
+  .playersloop:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(255,255,255);
+    background: linear-gradient(0deg, rgba(255,255,255,.7) 0%, rgba(255,255,255,0) 50%, rgba(255,255,255,.7) 100%);
+    z-index: 99;
+  }
+  ul {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -31,7 +44,7 @@
     list-style-type: none;
     margin: 20px auto;
   }
-  li{
+  li {
     position: relative;
     margin: 0 16px;
     font-size: 18px;

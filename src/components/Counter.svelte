@@ -16,7 +16,7 @@
   let isRunning = false;
 
   $: {
-    $Config.live = isRunning;
+    $Config.live = timeInterval;
   }
   const timer = () => {
     counter--;
@@ -37,6 +37,7 @@
 
   const handleStart = e => {
     if (isPaused) return;
+    counter = initCount;
     timeInterval && moveNextPlayer();
     timeInterval = setInterval(timer, 1000);
     isRunning = true;
@@ -47,11 +48,9 @@
     if (!isRunning) return;
     if (isPaused) {
       isPaused = false;
-      isRunning = true;
       timeInterval = setInterval(timer, 1000);
     } else {
       isPaused = true;
-      isRunning = false;
       clearInterval(timeInterval);
       timeInterval = null;
     }
@@ -59,8 +58,8 @@
 
 </script>
 
-<div class="counter">
-  <span class="digits glow" on:click={handleStart}>{counter}</span>
+<div class="counter" disabled={isPaused} on:click={handleStart}>
+  <span class="digits glow">{counter}</span>
 </div>
 <div class="controller">
   <Button type="secondary" disabled={isPaused} on:click={handleStart}>{buttonStart}</Button>
