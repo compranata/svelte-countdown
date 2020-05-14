@@ -1,9 +1,9 @@
 import { writable, derived } from 'svelte/store';
 
 const Members = writable([
-  { id: 123, name: 'Samurai', active: true },
-  { id: 124, name: 'Ninja', active: false },
-  { id: 125, name: 'Shogun', active: false },
+  { id: 123, name: 'Yoshi' },
+  { id: 124, name: 'Mario' },
+  { id: 125, name: 'Luigi' },
 ]);
 
 const Players = derived(

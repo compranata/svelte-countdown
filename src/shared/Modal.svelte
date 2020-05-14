@@ -40,9 +40,9 @@
     display: inline-block;
     font-size: 26px;
     font-weight: bolder;
-    color: #888;
+    color: #ddd;
     border-radius: 50%;
-    border: 4px solid #888;
+    border: 4px solid #ddd;
     width: 32px;
     height: 32px;
     position: absolute;
