@@ -4,28 +4,37 @@
   import { Config } from '../stores/State.js';
   import Timer from '../stores/Timer.js';
 
-  let buttonStart = 'Start';
   let counter = $Config.initCount;
 
   $: initCount = $Config.initCount;
 
   const dispatch = createEventDispatcher();
 
+  export let isTerminate = false;
   let timeInterval = null;
   let isPaused = false;
   let isRunning = false;
 
   $: {
-    $Config.live = timeInterval;
+    $Config.live = !!timeInterval;
   }
   const timer = () => {
     counter--;
     if (counter < 1) {
       clearInterval(timeInterval);
+      timeInterval = null;
       isRunning = false;
-      buttonStart = 'Start';
       dispatch('bomb');
     }
+  };
+
+  const setTimer = () => {
+    timeInterval = setInterval(timer, 1000);
+    isRunning = true;
+  };
+
+  const setReady = () => {
+    isRunning = false;
   };
 
   const moveNextPlayer = () => {
@@ -39,9 +48,9 @@
     if (isPaused) return;
     counter = initCount;
     timeInterval && moveNextPlayer();
-    timeInterval = setInterval(timer, 1000);
-    isRunning = true;
-    buttonStart = 'Next';
+    setTimer();
+    // console.log(isTerminate);
+    // (isTerminate) ? setReady() : setTimer();
   };
 
   const handlePause = e => {
@@ -62,7 +71,7 @@
   <span class="digits glow">{counter}</span>
 </div>
 <div class="controller">
-  <Button type="secondary" disabled={isPaused} on:click={handleStart}>{buttonStart}</Button>
+  <Button type="secondary" disabled={isPaused} on:click={handleStart}>{isRunning ? 'Next' : 'Start'}</Button>
   <Button type="primary" on:click={handlePause}>{isPaused ? 'Resume' : 'Pause'}</Button>
 </div>
 
