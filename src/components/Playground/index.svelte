@@ -1,7 +1,7 @@
 <script>
   import Counter from './Counter.svelte';
-  import PlayersLoop from './PlayersLoop.svelte';
-  import { Players, Config } from '../stores/State.js';
+  import PlayersLoop from './Players.svelte';
+  import { Players, Config } from '../../stores/State.js';
 
   let currentPlayerId = 0;
   let isTerminate = false;

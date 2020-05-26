@@ -1,8 +1,8 @@
 <script>
   import { createEventDispatcher } from 'svelte';
-  import Button from '../shared/Button.svelte';
-  import { Config } from '../stores/State.js';
-  import Timer from '../stores/Timer.js';
+  import Button from '../../shared/Button.svelte';
+  import { Config } from '../../stores/State.js';
+  import Timer from '../../stores/Timer.js';
 
   let counter = $Config.initCount;
 

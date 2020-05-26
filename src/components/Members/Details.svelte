@@ -1,7 +1,7 @@
 <script>
-  import Card from '../shared/Card.svelte';
-  import Button from '../shared/Button.svelte';
-  import { Members } from '../stores/State.js';
+  import Card from '../../shared/Card.svelte';
+  import Button from '../../shared/Button.svelte';
+  import { Members } from '../../stores/State.js';
 
   export let member;
 

@@ -1,8 +1,8 @@
 <script>
   import { fade, slide, scale } from 'svelte/transition';
   import { flip } from 'svelte/animate';
-  import MemberDetails from './MemberDetails.svelte';
-  import { Members } from '../stores/State';
+  import MemberDetails from './Details.svelte';
+  import { Members } from '../../stores/State';
 
 </script>
 

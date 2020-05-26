@@ -1,6 +1,6 @@
 <script>
-  import Button from '../shared/Button.svelte';
-  import { Members } from '../stores/State';
+  import Button from '../../shared/Button.svelte';
+  import { Members } from '../../stores/State';
 
   let fields = { name: '' };
   let errors = { name: '' };

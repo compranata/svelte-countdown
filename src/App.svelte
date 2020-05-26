@@ -2,9 +2,9 @@
 	import Header from './components/Header.svelte';
 	import Footer from './components/Footer.svelte';
 	import Modal from './shared/Modal.svelte';
-	import Members from './components/Members.svelte';
-	import Playground from './components/Playground.svelte';
-	import Settings from './components/Settings.svelte';
+	import Members from './components/Members/index.svelte';
+	import Playground from './components/Playground/index.svelte';
+	import Settings from './components/Setup/index.svelte';
 	import Tabs from './shared/Tabs.svelte';
 	import { Config } from './stores/State.js';
 

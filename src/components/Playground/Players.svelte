@@ -1,7 +1,7 @@
 <script>
   import { fade, slide, scale } from 'svelte/transition';
   import { flip } from 'svelte/animate';
-  import { Members } from '../stores/State';
+  import { Members } from '../../stores/State';
 
   export let currentPlayerId = 0;
 
