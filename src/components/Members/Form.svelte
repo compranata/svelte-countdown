@@ -2,28 +2,36 @@
   import Button from '../../shared/Button.svelte';
   import { Members } from '../../stores/State';
 
-  let fields = { name: '' };
+  let fields = { name: '', order: 1};
   let errors = { name: '' };
   let valid = false;
+
+  const trimString = value => {
+    console.log(typeof value, value);
+    
+    return (typeof value === 'string') ? value.trim() : value;
+  }
 
   const submitHandler = () => {
     valid = true;
     const existingName = $Members.map(member => member.name.toLowerCase());
-    const isExist = existingName.some(member => fields.name.trim().toLowerCase() === member);
+    const isExist = existingName.includes(fields.name.trim().toLowerCase());
     
-
     if (fields.name.trim().length < 3) {
       valid = false;
       errors.name = 'Name must be at least 3 chars long.';
     } else if (isExist) {
       valid = false;
-      errors.name = `'${ fields.name.trim()}' is already existing.`;
+      errors.name = `' ${ fields.name.trim()} ' is already existing.`;
     } else {
       errors.name = '';
     }
 
     if (valid) {
-      let member = {...fields, id: Math.random(), active: false };
+      for (let key in fields) {
+        fields[key] = trimString(fields[key]);
+      }
+      let member = {...fields, id: Math.floor(Math.random() * 1000), active: true };
       Members.update(currentMembers => {
         return [member, ...currentMembers];
       });

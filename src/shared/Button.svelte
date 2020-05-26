@@ -4,9 +4,10 @@
   export let flat = false;
   export let inverse = false;
   export let disabled = false;
+  export let title = 'button';
 </script>
 
-<button class:disabled={disabled} class:flat={flat} class:inverse={inverse} class:tiny={tiny} class={type} on:click>
+<button class:disabled={disabled} class:flat={flat} class:inverse={inverse} class:tiny={tiny} class={type} title={title} on:click>
   <slot></slot>
 </button>
 
@@ -27,6 +28,8 @@
   .tiny {
     padding: 4px 6px;
     font-size: .8em;
+    min-width: 26px;
+    min-height: 26px;
   }
   .flat {
     box-shadow: none;
@@ -39,10 +42,12 @@
     background: #45c496;
     color: white;
   }
-  .dimmed {
-    background: #888;
+  .grey {
+    background: #aaa;
     color: #ddd;
-    opacity: .2;
+  }
+  .dimmed {
+    opacity: .6;
   }
   .dimmed:hover {
     opacity: 1;

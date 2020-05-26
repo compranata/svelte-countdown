@@ -2,7 +2,6 @@
   import { createEventDispatcher } from 'svelte';
   import Button from '../../shared/Button.svelte';
   import { Config } from '../../stores/State.js';
-  import Timer from '../../stores/Timer.js';
 
   let counter = $Config.initCount;
 
@@ -49,8 +48,6 @@
     counter = initCount;
     timeInterval && moveNextPlayer();
     setTimer();
-    // console.log(isTerminate);
-    // (isTerminate) ? setReady() : setTimer();
   };
 
   const handlePause = e => {

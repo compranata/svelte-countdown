@@ -1,12 +1,12 @@
 <script>
   import Counter from './Counter.svelte';
   import PlayersLoop from './Players.svelte';
-  import { Players, Config } from '../../stores/State.js';
+  import { Users, Config } from '../../stores/State.js';
 
   let currentPlayerId = 0;
   let isTerminate = false;
 
-  $: totalPlayers = $Players;
+  $: totalPlayers = $Users;
 
   const moveNextPlayer = () => {
     if (currentPlayerId === totalPlayers - 1) {

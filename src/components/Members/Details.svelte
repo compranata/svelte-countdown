@@ -6,68 +6,61 @@
   export let member;
 
   const handleDelete = id => {
-    Members.update(polls => {
-      return polls.filter(poll => poll.id != id);
+    Members.update(players => {
+      return players.filter(player => player.id !== id);
     });
   };
+
+  const handlePause = id => {
+    Members.update(players => {
+      let current = [...players];
+      const target = players.filter(player => player.id === id);
+      target[0].active = !target[0].active;
+      return current;
+    })
+  }
 </script>
 
-<Card>
-  <div class="member">
-    <h3>{member.name}</h3>
-    <span class="delete">
-      <Button type="dimmed" tiny={true} flat={true} on:click={() => handleDelete(member.id)}>X</Button>
-    </span>
-  </div>
-  <div class="delete">
-    
+<Card active={member.active}>
+  <div class="member" >
+    <div class="name">
+      <h3>{member.name}</h3>
+    </div>
+    <div class="control">
+      <Button 
+        type="dimmed { member.active ? 'grey' : 'secondary'}"
+        tiny={true}
+        flat={true}
+        title={ member.active ? 'Pause' : 'Rejoin'}
+        on:click={() => handlePause(member.id)}
+      >
+        { member.active ? 'II' : '▶︎'}
+      </Button>
+      <Button 
+        type="dimmed primary"
+        tiny={true}
+        flat={true}
+        title="Delete"
+        on:click={() => handleDelete(member.id)}
+      >
+        X
+      </Button>
+    </div>
   </div>
 </Card>
 
 <style>
+  .member {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .control {
+    white-space: nowrap;
+  }
   h3 {
     margin: 0 auto;
     color: #555;
-  }
-  p {
-    margin-top: 6px;
-    font-size: 14px;
-    color: #aaa;
-    margin-bottom: 30px;
-  }
-  .member {
-    position: relative;
-  }
-  .answer{
-    background: #fafafa;
-    cursor: pointer;
-    margin: 10px auto;
-    position: relative;
-  }
-  .answer:hover{
-    opacity: 0.6;
-  }
-  span{
-    display: inline-block;
-    padding: 10px 20px;
-  }
-  .percent{
-    height: 100%;
-    position: absolute;
-    box-sizing: border-box;
-  }
-  .percent-a{
-    background: rgba(217,27,66,0.2);
-    border-left: 4px solid #d91b42;
-  }
-  .percent-b{
-    background: rgba(69,196,150,0.2);
-    border-left: 4px solid #45c496;
-  }
-  .delete{
-    position: absolute;
-    top: 50%;
-    right: -20px;
-    transform: translateY(-50%) translateY(4px);
   }
 </style>

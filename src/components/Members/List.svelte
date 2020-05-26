@@ -4,6 +4,9 @@
   import MemberDetails from './Details.svelte';
   import { Members } from '../../stores/State';
 
+  $: {
+    console.dir($Members);
+  }
 </script>
 
 <div class="member-list">

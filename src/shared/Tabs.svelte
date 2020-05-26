@@ -1,6 +1,6 @@
 <script>
   import { createEventDispatcher } from 'svelte';
-  import { Players, Config } from '../stores/State';
+  import { Users, Players, Config } from '../stores/State';
 
   let dispatch = createEventDispatcher();
   
@@ -24,7 +24,7 @@
         <div class="wrapper" class:active={item === activeItem} class:disabled={disabled}>
           { item }
           {#if item === 'Members'}
-            <span class="badge">{$Players}</span>
+            <span class="badge">{$Users}</span>
           {/if}
         </div>
       </li>
