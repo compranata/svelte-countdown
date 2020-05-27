@@ -6,7 +6,7 @@
   let errors = { initCount: '' };
   let valid = false;
 
-  const submitHandler = () => {
+  const handleChange = () => {
     valid = true;
 
     if (isNaN(fields.initCount)) {
@@ -25,8 +25,7 @@
 
 </script>
 
-<form name="config" on:submit|preventDefault={submitHandler}>
-  
+<form name="config" on:change={handleChange}>
   <div class="form-field">
     <label for="sec">Initial seconds:</label>
     <input type="number" id="sec" placeholder="Set an initial count" bind:value={fields.initCount} />
@@ -35,9 +34,6 @@
   <div class="form-field">
     <label for="seamless">Seamless loop:</label>
     <input type="checkbox" id="seamless" bind:checked={fields.loop} />
-  </div>
-  <div class="form-ctrl">
-    <Button type="secondary" flat="true">Save</Button>
   </div>
 </form>
 
