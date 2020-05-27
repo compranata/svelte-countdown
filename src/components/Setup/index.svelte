@@ -1,6 +1,6 @@
 <script>
-  import Button from '../shared/Button.svelte';
-  import { Config } from '../stores/State.js';
+  import Button from '../../shared/Button.svelte';
+  import { Config } from '../../stores/State.js';
 
   let fields = { initCount: $Config.initCount, loop: $Config.loop };
   let errors = { initCount: '' };

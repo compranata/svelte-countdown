@@ -1,7 +1,7 @@
 <script>
   import { fade, slide, scale } from 'svelte/transition';
   import { flip } from 'svelte/animate';
-  import { Members } from '../stores/State';
+  import { Players } from '../../stores/State';
 
   export let currentPlayerId = 0;
 
@@ -10,8 +10,8 @@
 
 <div class="playersloop">
   <ul class="looping" style="top: {posList}px">
-    {#each $Members as member, index (member.id)}
-      <li animate:flip class:active={index === currentPlayerId}>{member.name}</li>
+    {#each $Players as member, index (member.id)}
+      <li class:active={index === currentPlayerId}>{member.name}</li>
     {/each}
   </ul>
 </div>

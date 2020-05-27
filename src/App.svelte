@@ -2,15 +2,15 @@
 	import Header from './components/Header.svelte';
 	import Footer from './components/Footer.svelte';
 	import Modal from './shared/Modal.svelte';
-	import Members from './components/Members.svelte';
-	import Playground from './components/Playground.svelte';
-	import Settings from './components/Settings.svelte';
+	import Members from './components/Members/index.svelte';
+	import Playground from './components/Playground/index.svelte';
+	import Settings from './components/Setup/index.svelte';
 	import Tabs from './shared/Tabs.svelte';
 	import { Config } from './stores/State.js';
 
 	// tabs
 	let items = ['Play', 'Rules', 'Members'];
-	let activeItem = 'Play';
+	let activeItem = 'Members';
   $: isLive = $Config.live;
 	const tabChange = (e) => {
 		if (!isLive) activeItem = e.detail;
@@ -25,7 +25,8 @@
 </script>
 
 <Modal {showModal} isDark={true} on:click={toggleModal}>
-	<iframe src="https://giphy.com/embed/cEYFeE1QgHWH2YADVHG" max-width="384" max-height="204" frameBorder="0" title="You suck!" class="giphy-embed" allowFullScreen></iframe>
+	<img src='https://media.giphy.com/media/IrQcyTog3X8VW/giphy.gif' alt='you suck'>
+	<h3>Yes, you are!</h3>
 </Modal>
 <Header></Header>
 	<main>
