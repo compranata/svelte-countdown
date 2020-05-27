@@ -1,19 +1,19 @@
 <script>
   import Counter from './Counter.svelte';
   import PlayersLoop from './Players.svelte';
-  import { Users, Config } from '../../stores/State.js';
+  import { Players, Config } from '../../stores/State.js';
 
   let currentPlayerId = 0;
   let isTerminate = false;
 
-  $: totalPlayers = $Users;
+  $: totalPlayers = $Players.length;
 
   const moveNextPlayer = () => {
-    if (currentPlayerId === totalPlayers - 1) {
-      currentPlayerId = 0;
-      isTerminate = $Config.loop;
-      console.log('isTerminate', isTerminate);
-      
+    const isLastPlayer = currentPlayerId === totalPlayers - 1;
+
+    if (isLastPlayer) {
+      isTerminate = !$Config.loop;
+      currentPlayerId = 0
     } else {
       currentPlayerId++;
     }
@@ -23,7 +23,7 @@
 
 <div class="playground">
   <PlayersLoop {currentPlayerId} />
-  <Counter on:bomb on:next={moveNextPlayer} {isTerminate} />
+  <Counter on:bomb on:next={moveNextPlayer} {currentPlayerId}} />
 </div>
 
 <style>

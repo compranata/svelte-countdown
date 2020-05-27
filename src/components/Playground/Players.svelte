@@ -11,9 +11,7 @@
 <div class="playersloop">
   <ul class="looping" style="top: {posList}px">
     {#each $Players as member, index (member.id)}
-      {#if (member.active)}
-        <li class:active={index === currentPlayerId}>{member.name}</li>
-      {/if}
+      <li class:active={index === currentPlayerId}>{member.name}</li>
     {/each}
   </ul>
 </div>

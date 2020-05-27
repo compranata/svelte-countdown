@@ -48,5 +48,6 @@
     position: absolute;
     top: -18px;
     right: -18px;
+    cursor: pointer;
   }
 </style>

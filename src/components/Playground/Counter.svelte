@@ -1,27 +1,27 @@
 <script>
   import { createEventDispatcher } from 'svelte';
   import Button from '../../shared/Button.svelte';
-  import { Config } from '../../stores/State.js';
-
-  let counter = $Config.initCount;
-
-  $: initCount = $Config.initCount;
-
+  import { Players, Config } from '../../stores/State.js';
+  
   const dispatch = createEventDispatcher();
 
-  export let isTerminate = false;
+  export let currentPlayerId;
+
+  let counter = $Config.initCount;
   let timeInterval = null;
   let isPaused = false;
   let isRunning = false;
 
+  $: initCount = $Config.initCount;
+  $: totalPlayers = $Players.length;
   $: {
     $Config.live = !!timeInterval;
   }
+
   const timer = () => {
     counter--;
     if (counter < 1) {
-      clearInterval(timeInterval);
-      timeInterval = null;
+      clearTimer();
       isRunning = false;
       dispatch('bomb');
     }
@@ -32,14 +32,23 @@
     isRunning = true;
   };
 
-  const setReady = () => {
-    isRunning = false;
-  };
+  const clearTimer = () => {
+    clearInterval(timeInterval);
+    timeInterval = null;
+  }
+
+  const resetState = () => {
+    const isTerminated = currentPlayerId === totalPlayers -1 && !$Config.loop;
+    if (isTerminated) {
+      isRunning = false;
+      return false;
+    } else {
+      return true;
+    }
+  }
 
   const moveNextPlayer = () => {
-    clearInterval(timeInterval);
-    counter = initCount;
-    timeInterval = null;
+    clearTimer();
     dispatch('next');
   };
 
@@ -47,29 +56,23 @@
     if (isPaused) return;
     counter = initCount;
     timeInterval && moveNextPlayer();
-    setTimer();
+    resetState() && setTimer();
   };
 
   const handlePause = e => {
-    if (!isRunning) return;
-    if (isPaused) {
-      isPaused = false;
-      timeInterval = setInterval(timer, 1000);
-    } else {
-      isPaused = true;
-      clearInterval(timeInterval);
-      timeInterval = null;
-    }
+    isPaused ? setTimer() : clearTimer();
+    isPaused = !isPaused;
   };
 
 </script>
 
 <div class="counter" disabled={isPaused} on:click={handleStart}>
   <span class="digits glow">{counter}</span>
+  <span class="ready glow" class:show={!isRunning}>Ready, steady...</span>
 </div>
 <div class="controller">
   <Button type="secondary" disabled={isPaused} on:click={handleStart}>{isRunning ? 'Next' : 'Start'}</Button>
-  <Button type="primary" on:click={handlePause}>{isPaused ? 'Resume' : 'Pause'}</Button>
+  <Button type="primary" disabled={!isRunning} on:click={handlePause}>{isPaused ? 'Resume' : 'Pause'}</Button>
 </div>
 
 <style>
@@ -83,6 +86,18 @@
     margin: 20px auto;
     color: #888;
     max-width: 300px;
+    position: relative;
+  }
+  .ready {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: .3em;
+  }
+  .show {
+    display: block;
   }
   .controller {
     display: grid;

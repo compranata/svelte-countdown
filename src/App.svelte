@@ -25,7 +25,8 @@
 </script>
 
 <Modal {showModal} isDark={true} on:click={toggleModal}>
-	<h3>You suck</h3>
+	<img src='https://media.giphy.com/media/IrQcyTog3X8VW/giphy.gif' alt='you suck'>
+	<h3>Yes, you are!</h3>
 </Modal>
 <Header></Header>
 	<main>
