@@ -46,5 +46,10 @@
 		position: relative;
     max-width: 420px;
 		margin: 20px auto;
-  }
+	}
+	@media only screen and (max-width: 440px) {
+    main {
+      margin: 20px 20px;
+    }
+	}
 </style>
