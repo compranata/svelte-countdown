@@ -39,7 +39,7 @@
 
   const resetState = () => {
     const isTerminated = currentPlayerId === totalPlayers -1 && !$Config.loop;
-    if (isTerminated) {
+    if (isTerminated && isRunning) {
       isRunning = false;
       return false;
     } else {
@@ -67,8 +67,8 @@
 </script>
 
 <div class="counter" disabled={isPaused} on:click={handleStart}>
-  <span class="digits glow">{counter}</span>
-  <span class="ready glow" class:show={!isRunning}>Ready, steady...</span>
+  <span class="digits shadow">{counter}</span>
+  <span class="ready shadow" class:show={!isRunning}>Ready, steady...</span>
 </div>
 <div class="controller">
   <Button type="secondary" disabled={isPaused} on:click={handleStart}>{isRunning ? 'Next' : 'Start'}</Button>
@@ -79,6 +79,7 @@
   .counter {
     font-family: 'Orbitron', sans-serif;
     font-size: 15em;
+    font-weight: 900;
     text-align: center;
     cursor: pointer;
     border-radius: 6px;
@@ -95,6 +96,8 @@
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: .3em;
+    font-weight: 800;
+    color: white;
   }
   .show {
     display: block;
@@ -103,6 +106,11 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 20px;
+  }
+
+  .shadow {
+    /* color: white; */
+    text-shadow: 2px 4px 6px rgba(0,0,0,0.8);
   }
   .glow {
     color: #fff;
