@@ -49,7 +49,7 @@
     margin: 0 16px;
     font-size: 18px;
     color: #ccc;
-    width: 300px;
+    min-width: 240px;
     text-align: center;
   }
   li.active {
