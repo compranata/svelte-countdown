@@ -7,8 +7,6 @@
   let valid = false;
 
   const trimString = value => {
-    console.log(typeof value, value);
-    
     return (typeof value === 'string') ? value.trim() : value;
   }
 
@@ -16,10 +14,11 @@
     valid = true;
     const existingName = $Members.map(member => member.name.toLowerCase());
     const isExist = existingName.includes(fields.name.trim().toLowerCase());
+    const overRange = fields.name.trim().length < 3 || fields.name.trim().length > 12;
     
-    if (fields.name.trim().length < 3) {
+    if (overRange) {
       valid = false;
-      errors.name = 'Name must be at least 3 chars long.';
+      errors.name = 'Name must be between 3 and 12 chars long.';
     } else if (isExist) {
       valid = false;
       errors.name = `' ${ fields.name.trim()} ' is already existing.`;
