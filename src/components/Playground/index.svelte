@@ -23,7 +23,7 @@
 
 <div class="playground">
   <PlayersLoop {currentPlayerId} />
-  <Counter on:bomb on:next={moveNextPlayer} {currentPlayerId}} />
+  <Counter on:bomb on:next={moveNextPlayer} {currentPlayerId} />
 </div>
 
 <style>

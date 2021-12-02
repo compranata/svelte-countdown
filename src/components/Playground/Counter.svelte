@@ -120,4 +120,12 @@
       text-shadow: 0 0 20px #fff, 0 0 30px #888, 0 0 40px #888, 0 0 50px #888, 0 0 60px #888, 0 0 70px #888, 0 0 80px #888;
     }
   }
+  @keyframes glow {
+    from {
+      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #333, 0 0 40px #333, 0 0 50px #333, 0 0 60px #333, 0 0 70px #333;
+    }
+    to {
+      text-shadow: 0 0 20px #fff, 0 0 30px #888, 0 0 40px #888, 0 0 50px #888, 0 0 60px #888, 0 0 70px #888, 0 0 80px #888;
+    }
+  }
 </style>

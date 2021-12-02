@@ -55,7 +55,8 @@
   li.active {
     font-size: 36px;
     color: #666;
-    border: 2px solid #ccc;
+    border-top: 2px solid #ccc;
+    border-bottom: 2px solid #ccc;
   }
 
   li.active:before {
